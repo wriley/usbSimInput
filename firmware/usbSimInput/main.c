@@ -134,12 +134,12 @@ void inButtonPoll(void)
 {
 	for(char i = 0; i < 8; i++)
 	{
-		DDRA |= BIT(i);				// set to output and enable
-		PORTA |= BIT(i);
+		DDRA |= _BV(i);				// set to output and enable
+		PORTA |= _BV(i);
 		buttonData[i*2] = PINB;		// read 8 bits from PORTB
 		buttonData[(i*2)+1] = PINC;	// read 8 bits from PORTC
-		PORTA &= ~(BIT(i));			// disable and set to tristate
-		DDRA &= ~(BIT(i));
+		PORTA &= ~(_BV(i));			// disable and set to tristate
+		DDRA &= ~(_BV(i));
 	}
 	
 	newDataFound = 1;
@@ -147,11 +147,6 @@ void inButtonPoll(void)
 
 void wdInit(void)
 {
-#if defined(__IOM16_H) || defined(__IOM32_H)
-    WDTCR = (7 << WDP0) | (1 << WDE);
-#else
-    WDTCR = (1 << WDCE) | (1 << WDE);
-#endif
     WDTCR = (7 << WDP0) | (1 << WDE);
 }
 
