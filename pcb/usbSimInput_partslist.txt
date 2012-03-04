@@ -1,0 +1,30 @@
+Partlist
+
+Exported from usbSimInput.sch at 3/3/2012 2:18:12 PM
+
+EAGLE Version 6.1.0 Copyright (c) 1988-2012 CadSoft
+
+Assembly variant: 
+
+Part     Value          Device          Package      Library  Sheet
+
+C1       10uF           CPOL-USE2.5-5   E2,5-5       rcl      1
+C2       15pF           C-US025-024X044 C025-024X044 rcl      1
+C3       15pF           C-US025-024X044 C025-024X044 rcl      1
+C4       0.1uF          C-US050-025X075 C050-025X075 rcl      1
+C5       0.1uF          C-US050-025X075 C050-025X075 rcl      1
+D1       3.3V           ZENER-DIODEZD-5 ZDIO-5       diode    1
+D2       3.3V           ZENER-DIODEZD-5 ZDIO-5       diode    1
+J1                      PN61729-S       PN61729-S    con-berg 1
+JP1                     ML10            ML10         con-ml   1
+JP2                     MA20-2          MA20-2       con-lstb 1
+R1       2K2            R-US_0207/7     0207/7       resistor 1
+R2       4K7            R-US_0207/7     0207/7       resistor 1
+R3       330            R-US_0207/7     0207/7       resistor 1
+R4       330            R-US_0207/7     0207/7       resistor 1
+R5       330            R-US_0207/7     0207/7       resistor 1
+R6       330            R-US_0207/7     0207/7       resistor 1
+R7       82             R-US_0207/7     0207/7       resistor 1
+R8       82             R-US_0207/7     0207/7       resistor 1
+U1       MEGA16-P       MEGA16-P        DIL40        atmel    1
+X1       12MHz          CRYSTALHC49U-V  HC49U-V      crystal  1
