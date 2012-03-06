@@ -25,20 +25,22 @@ PROGMEM char usbHidReportDescriptor[23] = { /* USB report descriptor, size must 
     0xa1, 0x01,                    // COLLECTION (Application)
     0x05, 0x09,                    // USAGE_PAGE (Button)
     0x19, 0x01,                    //   USAGE_MINIMUM (Button 1)
-    0x29, 0x80,                    //   USAGE_MAXIMUM (Button 128)
+    0x29, 0x40,                    //   USAGE_MAXIMUM (Button 64)
     0x15, 0x00,                    //   LOGICAL_MINIMUM (0)
     0x25, 0x01,                    //   LOGICAL_MAXIMUM (1)
     0x75, 0x01,                    // REPORT_SIZE (1)
-    0x95, 0x80,                    // REPORT_COUNT (128)
+    0x95, 0x40,                    // REPORT_COUNT (64)
     0x81, 0x02,                    // INPUT (Data,Var,Abs)
     0xc0                           // END_COLLECTION
 };
 
-int  buttonData[1];
+#define REPORT_BYTES 8
+
+uchar  buttonData[16];
 char newDataFound = 0;
 
 // USB report buffer
-static uchar usbReport[1];
+static uchar usbReport[REPORT_BYTES];
 
 //
 // Build the USB report data using
@@ -48,7 +50,22 @@ static uchar *usbBuildReport(void)
     // rebuild the report only if new data was captured
     if (newDataFound)
     {
+		uchar  *dp = &buttonData[0];     // button data pointer
+        uchar *rp = &usbReport[0];      // report buffer pointer
+        uchar data;
+        uchar i;
 
+        for (i = 0; i < REPORT_BYTES; i++)
+        {
+            // ensure the atomic operation
+            cli();
+            data = *dp++;
+            sei();
+
+            // storing data
+            *rp++ = data;
+		}
+                           
         // reset new data flag
         newDataFound = 0;
     }
@@ -62,7 +79,7 @@ static uchar *usbBuildReport(void)
 //
 // USB setup request processing
 //
-uchar usbFunctionSetup(uchar data[8])
+usbMsgLen_t usbFunctionSetup(uchar data[8])
 {
     usbRequest_t *rq = (void *)data;
 
@@ -98,14 +115,34 @@ void outSendData(void)
 
 /* ------------------------------------------------------------------------- */
 
-void inButtonPoll(void)
+void inButtonInit(void)
 {
-    newDataFound = 1;
+        // configure PORTB and PORTC as inputs and enable pullups
+        DDRB = 0x00;
+        PORTB = 0xff;
+        DDRC = 0x00;
+        PORTC = 0xff;
+        
+        // configure PORTA as tristate
+        DDRA = 0x00;
+        PORTA = 0x00;
 }
 
-void inButtonInit()
+void inButtonPoll(void)
 {
-	// init pins
+	for(uchar i = 0; i < 8; i++)
+	{
+		DDRA |= _BV(i);							// set to output and set low
+		PORTA &= ~(_BV(i));
+		cli();
+		buttonData[i*2] = ~PINB;
+		buttonData[(i*2)+1] = ~PINC;
+		sei();
+		PORTA |= _BV(i);						// disable and set to tristate
+		DDRA &= ~(_BV(i));
+	}		
+	
+	newDataFound = 1;
 }
 
 void wdInit(void)
