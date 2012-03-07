@@ -127,8 +127,7 @@ static void hardwareInit(void)
 
 }
 
-static uchar    reportBuffer[6];    /* buffer for HID reports */
-
+static uchar reportBuffer[8];    /* buffer for HID reports */
 
 
 /* ------------------------------------------------------------------------- */
@@ -168,10 +167,16 @@ uchar	usbFunctionSetup(uchar data[8])
 
 	usbMsgPtr = reportBuffer;
 	if((rq->bmRequestType & USBRQ_TYPE_MASK) == USBRQ_TYPE_CLASS){    /* class request type */
-		if(rq->bRequest == USBRQ_HID_GET_REPORT){  /* wValue: ReportType (highbyte), ReportID (lowbyte) */
-			/* we only have one report type, so don't look at wValue */
-			curGamepad->buildReport(reportBuffer);
-			return curGamepad->report_size;
+		if(rq->bRequest == USBRQ_HID_GET_REPORT){
+			reportBuffer[0] = 0;
+			reportBuffer[1] = 0;
+			reportBuffer[2] = 0;
+			reportBuffer[3] = 0;
+			reportBuffer[4] = 0;
+			reportBuffer[5] = 0;
+			reportBuffer[6] = 0;
+			reportBuffer[7] = 0;
+			return sizeof(reportBuffer);
 		}else if(rq->bRequest == USBRQ_HID_GET_IDLE){
 			usbMsgPtr = &idleRate;
 			return 1;
@@ -285,17 +290,20 @@ int main(void)
 			must_report = 0;
 
 			curGamepad->buildReport(reportBuffer);
-			usbSetInterrupt(reportBuffer, curGamepad->report_size);
+			
+			while (!usbInterruptIsReady())
+			{
+				usbPoll();
 			}
+			usbSetInterrupt(reportBuffer, 8); // first 8 bytes
+			
+			while (!usbInterruptIsReady())
+			{
+				usbPoll();
+			}
+			usbSetInterrupt(reportBuffer+8, 8); // second 8 bytes
+			}			
 		}
-		/*	
-		if(must_report && usbInterruptIsReady()){
-			must_report = 0;
-
-			curGamepad->buildReport(reportBuffer);
-			usbSetInterrupt(reportBuffer, curGamepad->report_size);
-		}
-*/
 	}
 	return 0;
 }

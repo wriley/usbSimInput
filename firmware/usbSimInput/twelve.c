@@ -25,7 +25,7 @@
 #include "gamepad.h"
 #include "twelve.h"
 
-#define REPORT_SIZE		8
+#define REPORT_SIZE		16
 
 /*********** prototypes *************/
 static void twelveInit(void);
@@ -40,7 +40,7 @@ static unsigned char last_reported_controller_bytes[REPORT_SIZE];
 
 static void readController(unsigned char bits[REPORT_SIZE])
 {
-	for(unsigned char i = 0; i < 4; i++)
+	for(unsigned char i = 0; i < 8; i++)
 	{
 		DDRA |= _BV(i);                                                 // set to output and set low
 		PORTA &= ~(_BV(i));
