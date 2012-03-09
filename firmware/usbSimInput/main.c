@@ -127,7 +127,7 @@ static void hardwareInit(void)
 
 }
 
-static uchar reportBuffer[8];    /* buffer for HID reports */
+static uchar reportBuffer[REPORT_SIZE];    /* buffer for HID reports */
 
 
 /* ------------------------------------------------------------------------- */
@@ -196,7 +196,7 @@ int main(void)
 {
 	char must_report = 0, first_run = 1;
 	uchar   idleCounter = 0;
-	int run_mode;
+//	int run_mode;
 
 	// led pin as output
 //	DDRD |= 0x20;
@@ -210,7 +210,7 @@ int main(void)
 
 	_delay_ms(10); /* let pins settle */
 
-	run_mode = (PINB & 0x06)>>1;
+//	run_mode = (PINB & 0x06)>>1;
 
 	curGamepad = twelveGetGamepad();
 	
@@ -287,21 +287,21 @@ int main(void)
 			if (usbInterruptIsReady())
 			{ 	
 
-			must_report = 0;
+				must_report = 0;
 
-			curGamepad->buildReport(reportBuffer);
+				curGamepad->buildReport(reportBuffer);
 			
-			while (!usbInterruptIsReady())
-			{
-				usbPoll();
-			}
-			usbSetInterrupt(reportBuffer, 8); // first 8 bytes
+				while (!usbInterruptIsReady())
+				{
+					usbPoll();
+				}
+				usbSetInterrupt(reportBuffer, 8); // first 8 bytes
 			
-			while (!usbInterruptIsReady())
-			{
-				usbPoll();
-			}
-			usbSetInterrupt(reportBuffer+8, 8); // second 8 bytes
+				while (!usbInterruptIsReady())
+				{
+					usbPoll();
+				}
+				usbSetInterrupt(reportBuffer+8, 8); // second 8 bytes
 			}			
 		}
 	}

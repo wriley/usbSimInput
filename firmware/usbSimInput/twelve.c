@@ -25,7 +25,6 @@
 #include "gamepad.h"
 #include "twelve.h"
 
-#define REPORT_SIZE		16
 
 /*********** prototypes *************/
 static void twelveInit(void);
@@ -45,8 +44,9 @@ static void readController(unsigned char bits[REPORT_SIZE])
 		DDRA |= _BV(i);                                                 // set to output and set low
 		PORTA &= ~(_BV(i));
 		cli();
-		bits[i*2] = PINB;
-        bits[(i*2)+1] = PINC;
+		/* Buttons are active low. Invert values. */
+		bits[i*2] = ~PINB;
+        bits[(i*2)+1] = ~PINC;
         sei();
         PORTA |= _BV(i);                                                // disable and set to tristate
         DDRA &= ~(_BV(i));
@@ -68,6 +68,10 @@ static void twelveInit(void)
     // configure PORTA as tristate
     DDRA = 0x00;
 	PORTA = 0x00;
+	
+	// disable ADC
+	ADCSRA |= _BV(ADEN);
+	
 	twelveUpdate();
 
 	SREG = sreg;
@@ -78,15 +82,8 @@ static void twelveInit(void)
 static void twelveUpdate(void)
 {
 	unsigned char data[REPORT_SIZE];
-	
 	readController(data);
-
-	/* Buttons are active low. Invert values. */
-	for(unsigned char i = 0; i < REPORT_SIZE; i++)
-	{
-		data[i] = data[i] ^ 0xff;
-		last_read_controller_bytes[i] = data[i];
-	}
+	memcpy(last_read_controller_bytes, data, REPORT_SIZE);
 }	
 
 static char twelveChanged(void)
