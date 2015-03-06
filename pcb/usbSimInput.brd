@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.1">
+<eagle version="7.2.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -314,9 +314,7 @@ Based on  the following source:
 <packages>
 <package name="PN61729-S">
 <description>&lt;b&gt;USB connector&lt;/b&gt; with shield&lt;p&gt;</description>
-<wire x1="-5.9" y1="5.6" x2="-5.9" y2="-10.15" width="0.254" layer="51"/>
 <wire x1="-5.9" y1="-10.15" x2="5.9" y2="-10.15" width="0.254" layer="21"/>
-<wire x1="5.9" y1="-10.15" x2="5.9" y2="5.6" width="0.254" layer="51"/>
 <wire x1="5.9" y1="5.6" x2="-5.9" y2="5.6" width="0.254" layer="21"/>
 <wire x1="-2.46" y1="-0.27" x2="-2.46" y2="0.73" width="0.0508" layer="21" curve="180"/>
 <wire x1="-2.46" y1="-1.27" x2="-2.46" y2="-0.27" width="0.0508" layer="21" curve="180"/>
@@ -2910,7 +2908,7 @@ This is the mechanical footprint for a #4 phillips button head screw. Use the ke
 <class number="0" name="default" width="0.254" drill="0">
 </class>
 </classes>
-<designrules>
+<designrules name="SeeedStudio_2layer_DRU_no_angle_20140221">
 <description language="de">&lt;b&gt;EAGLE Design Rules&lt;/b&gt;
 &lt;p&gt;
 Die Standard-Design-Rules sind so gewählt, dass sie für 
@@ -2928,14 +2926,14 @@ design rules under a new name.</description>
 <description language="zh">&lt;b&gt;Seeed Studio EAGLE Design Rules&lt;/b&gt;
 </description>
 <param name="layerSetup" value="(1*16)"/>
-<param name="mtCopper" value="0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm"/>
-<param name="mtIsolate" value="1.5mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm"/>
-<param name="mdWireWire" value="10mil"/>
-<param name="mdWirePad" value="10mil"/>
-<param name="mdWireVia" value="10mil"/>
-<param name="mdPadPad" value="10mil"/>
-<param name="mdPadVia" value="10mil"/>
-<param name="mdViaVia" value="10mil"/>
+<param name="mtCopper" value="0.035mm 0.0175mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.0175mm 0.035mm"/>
+<param name="mtIsolate" value="1.5mm 1.1mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm"/>
+<param name="mdWireWire" value="6mil"/>
+<param name="mdWirePad" value="6mil"/>
+<param name="mdWireVia" value="6mil"/>
+<param name="mdPadPad" value="6mil"/>
+<param name="mdPadVia" value="6mil"/>
+<param name="mdViaVia" value="6mil"/>
 <param name="mdSmdPad" value="0mil"/>
 <param name="mdSmdVia" value="0mil"/>
 <param name="mdSmdSmd" value="0mil"/>
@@ -2944,7 +2942,7 @@ design rules under a new name.</description>
 <param name="mdCopperDimension" value="10mil"/>
 <param name="mdDrill" value="10mil"/>
 <param name="mdSmdStop" value="0mil"/>
-<param name="msWidth" value="10mil"/>
+<param name="msWidth" value="6mil"/>
 <param name="msDrill" value="12mil"/>
 <param name="msMicroVia" value="12mil"/>
 <param name="msBlindViaRatio" value="0.5"/>
@@ -2998,6 +2996,9 @@ design rules under a new name.</description>
 <autorouter>
 <pass name="Default">
 <param name="RoutingGrid" value="10mil"/>
+<param name="AutoGrid" value="1"/>
+<param name="Efforts" value="0"/>
+<param name="TopRouterVariant" value="1"/>
 <param name="tpViaShape" value="round"/>
 <param name="PrefDir.1" value="*"/>
 <param name="PrefDir.2" value="0"/>
@@ -3103,7 +3104,7 @@ design rules under a new name.</description>
 <attribute name="NAME" x="5.715" y="57.785" size="1.778" layer="25" ratio="10"/>
 <attribute name="VALUE" x="9.525" y="46.99" size="1.778" layer="27" ratio="10" rot="R270"/>
 </element>
-<element name="J1" library="con-berg" package="PN61729-S" value="" x="5.08" y="15.24" smashed="yes" rot="R270">
+<element name="J1" library="con-berg" package="PN61729-S" value="PN61729-S" x="5.08" y="15.24" smashed="yes" rot="R270">
 <attribute name="OC_NEWARK" value="unknown" x="-25.4" y="-6.35" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MPN" value="" x="-25.4" y="-6.35" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MF" value="" x="-25.4" y="-6.35" size="1.778" layer="27" rot="R270" display="off"/>
@@ -3644,6 +3645,58 @@ design rules under a new name.</description>
 <wire x1="43.18" y1="36.83" x2="39.37" y2="36.83" width="0.254" layer="1"/>
 </signal>
 </signals>
+<errors>
+<approved hash="18,29,b2622d36a8d36d70"/>
+<approved hash="18,29,660de7bbce79aca5"/>
+<approved hash="18,29,8f5e88a87683716b"/>
+<approved hash="18,29,988b84d57ac86690"/>
+<approved hash="18,29,63c13d33c5109fe0"/>
+<approved hash="18,29,2aa7fc2c672e4a51"/>
+<approved hash="18,29,3d9a6d1ce008512a"/>
+<approved hash="18,29,336d9905aee6f1d8"/>
+<approved hash="18,29,33afaedc984ffe2e"/>
+<approved hash="18,29,30e1bc378bf4fe10"/>
+<approved hash="18,29,487985088b32be57"/>
+<approved hash="18,29,3039f08387b9c697"/>
+<approved hash="18,29,4839fcf6f3dcbed7"/>
+<approved hash="18,29,40f9e851ee63b697"/>
+<approved hash="18,29,44399dad9c87b157"/>
+<approved hash="18,29,44f9ae52ac60b297"/>
+<approved hash="18,29,44784b08492bb297"/>
+<approved hash="18,29,5439a2ffb1dda2d7"/>
+<approved hash="18,29,b439b76545b74296"/>
+<approved hash="18,29,743929ab1891be97"/>
+<approved hash="18,29,4839d7acd68eb157"/>
+<approved hash="18,29,48790c9903bbbe97"/>
+<approved hash="18,29,48f9644f6a6dbe97"/>
+<approved hash="18,29,403978f47fc6b6d7"/>
+<approved hash="18,29,5079011e1714a657"/>
+<approved hash="18,29,40385bcf5a84b157"/>
+<approved hash="18,29,5479c707d515a257"/>
+<approved hash="18,29,44f92a70286ab297"/>
+<approved hash="18,29,44393ef53dffb2d7"/>
+<approved hash="18,29,b479329ac1b84297"/>
+<approved hash="18,29,a0ef99239f2d573d"/>
+<approved hash="18,29,a8ff84e88a565e0d"/>
+<approved hash="18,29,a89bec9ae3645ea9"/>
+<approved hash="18,29,b06be1cdf73b46b9"/>
+<approved hash="18,29,b46f27d0353e42bd"/>
+<approved hash="18,29,54ef5772a55ca2bc"/>
+<approved hash="18,29,ab7f380b35f55ecd"/>
+<approved hash="18,29,a4e7caefc8495235"/>
+<approved hash="18,29,ab67ca34c7f25d35"/>
+<approved hash="18,29,a0eb08c20e4c5639"/>
+<approved hash="18,29,b4df43385106432d"/>
+<approved hash="18,29,a47aab2ba9145289"/>
+<approved hash="18,29,a37b7e0e7bf852c9"/>
+<approved hash="18,29,a4ebdf26dd105339"/>
+<approved hash="18,29,a4eb4ec14c4f5239"/>
+<approved hash="18,29,a86765d76b115eb5"/>
+<approved hash="18,29,a36abc1cb9eb56b9"/>
+<approved hash="18,29,d0e7109c675a26b5"/>
+<approved hash="18,29,549bd2992167a2a9"/>
+<approved hash="18,29,a8db1d3513035f29"/>
+</errors>
 </board>
 </drawing>
 </eagle>

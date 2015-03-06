@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.1">
+<eagle version="7.2.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -454,9 +454,7 @@ Based on  the following source:
 <packages>
 <package name="PN61729-S">
 <description>&lt;b&gt;USB connector&lt;/b&gt; with shield&lt;p&gt;</description>
-<wire x1="-5.9" y1="5.6" x2="-5.9" y2="-10.15" width="0.254" layer="51"/>
 <wire x1="-5.9" y1="-10.15" x2="5.9" y2="-10.15" width="0.254" layer="21"/>
-<wire x1="5.9" y1="-10.15" x2="5.9" y2="5.6" width="0.254" layer="51"/>
 <wire x1="5.9" y1="5.6" x2="-5.9" y2="5.6" width="0.254" layer="21"/>
 <wire x1="-2.46" y1="-0.27" x2="-2.46" y2="0.73" width="0.0508" layer="21" curve="180"/>
 <wire x1="-2.46" y1="-1.27" x2="-2.46" y2="-0.27" width="0.0508" layer="21" curve="180"/>
@@ -15674,7 +15672,7 @@ Source: 008-0260-0_E.pdf</description>
 <part name="U1" library="atmel" deviceset="MEGA16-P" device=""/>
 <part name="FRAME1" library="frames" deviceset="LETTER_L" device=""/>
 <part name="JP1" library="con-ml" deviceset="ML10" device=""/>
-<part name="J1" library="con-berg" deviceset="PN61729-S" device="" value=""/>
+<part name="J1" library="con-berg" deviceset="PN61729-S" device="" value="PN61729-S"/>
 <part name="JP2" library="con-lstb" deviceset="MA20-2" device=""/>
 <part name="P+3" library="supply1" deviceset="VCC" device=""/>
 <part name="GND10" library="supply1" deviceset="GND" device=""/>
