@@ -1,4 +1,7 @@
-/* Nes/Snes/Genesis/SMS/Atari to USB
+/* usbSimInput - 128 button HID Joystick
+ * Modified from project below by William Riley <wrileystl@gmail.com>
+ *
+ * Nes/Snes/Genesis/SMS/Atari to USB
  * Copyright (C) 2006-2007 Raphaël Assénat
  *
  * This program is free software; you can redistribute it and/or modify
