@@ -10,3 +10,6 @@
 *.map
 *.o
 *.mk
+
+firmware/usbSimInput/Debug/
+firmware/usbSimInput/Release/

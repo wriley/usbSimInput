@@ -62,7 +62,7 @@ static void twelveInit(void)
 	sreg = SREG;
 	cli();
 	
-	// configure PORTB and PORTC as inputs and enable pullups
+	// configure PORTB and PORTC as inputs and disable pullups
     DDRB = 0x00;
     PORTB = 0xff;
     DDRC = 0x00;

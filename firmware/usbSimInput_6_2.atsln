@@ -1,0 +1,20 @@
+
+Microsoft Visual Studio Solution File, Format Version 11.00
+# AvrStudio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "usbSimInput", "usbSimInput\usbSimInput_6_2.cproj", "{E0476AF6-695B-4AEF-BC18-0A4C1FA0981B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E0476AF6-695B-4AEF-BC18-0A4C1FA0981B}.Debug|AVR.ActiveCfg = Debug|AVR
+		{E0476AF6-695B-4AEF-BC18-0A4C1FA0981B}.Debug|AVR.Build.0 = Debug|AVR
+		{E0476AF6-695B-4AEF-BC18-0A4C1FA0981B}.Release|AVR.ActiveCfg = Release|AVR
+		{E0476AF6-695B-4AEF-BC18-0A4C1FA0981B}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
